@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+
+body {
+  transition: background .5s ease-in-out;
+  margin: 0;
+  padding: 0;
+  font-family: 'Droid Sans';
+}
+
+.title {
+  height: 100%;
+  width: 100%;
+  background: #2A2E2E;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  font-size: 50px;
+  text-shadow: 3px 1px #e0123a;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+.disappear {
+  opacity: 0;
+  z-index: -10;
+}
+.timer {
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+.score {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.go {
+  margin: auto;
+  background: #59BB30;
+  height: 20px;
+  width: 100px;
+  animation: doit .4s infinite;
+}
+
+.go:hover {
+  cursor: pointer;
+}
+
+@keyframes doit {
+  0%  {transform: scale(1)}
+  50% {transform: scale(1.5)}
+}
+
+.container {
+  height: 22px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-top: calc(50vh - 11px);
+}
+
+.choices {
+  height: 20px;
+  width: 100px;
+  display: inline-block;
+  color: white;
+  font-family: "Droid Sans";
+  text-align: center;
+  transition: transform .2s ease-in-out;
+  opacity: 0;
+}
+
+@for $i from 1 through 4 {
+  .choices:nth-child(#{$i}) {
+    animation: fadeup .2s ease-in-out forwards;
+    animation-delay: $i * .08s;
+  }
+}
+
+.end {
+  height: 100%;
+  width: 100%;
+  background: #2A2E2E;
+  position: absolute;
+  top: 0;
+  color: #fff;
+  text-align: center;
+  z-index: -100;
+  opacity: 0;
+}
+
+.stop {
+  opacity: 1;
+  z-index: 100;
+}
+
+@keyframes fadeup {
+  0% {margin-top: 20px; opacity: 0}
+  100% {margin-top: 0px; opacity: 1}
+}
+
+.choices:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+      height: 200px;
+      width: 100px;
+      flex-direction: column;
+      margin-top: calc(50vh - 100px);
+      left: calc(50% - 50px);
+    }
+  
+    @for $i from 1 through 4 {
+    .choices:nth-child(#{$i}) {
+      animation: faderight .2s ease-in-out forwards;
+      animation-delay: $i * .08s;
+    }
+      
+      @keyframes faderight {
+        0%   {margin-left: -20px; opacity: 0}
+        100% {margin-left: 0px; opacity: 1}
+      }
+  }
+}
